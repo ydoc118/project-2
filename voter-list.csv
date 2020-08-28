@@ -1,0 +1,12 @@
+id,user_id,first_name,last_name,registered,address_one,city,state,zip,county,d_license,registration_id,voted
+1,NULL,Cody,Blankenship,1,"908 40th st w",Bradenton,Fl,34205,Manatee,B123-456-78-910-0,12345,0
+2,NULL,Patrick,Mulhern,1,"9306 Treaty Rd",Philadelphia,Pa,19114,Philadelphia,25551623,23456,0
+3,NULL,Christina,Bayley,1,"606 Grant St",Woodbury,Nj,08096,Gloucester,B0963-12473-54754,34567,0
+4,NULL,Conchetta,Park,1,"1234 Main St",Philadelphia,Pa,19121,Philadelphia,1122334455,88212,0
+12,NULL,Quincy,Iheme,1,"222 Second St",Philadelphia,Pa,14114,Philadelphia,23456789,56789,0
+13,NULL,Vincent,Gubitosi,0,"333 Third St",Philadelphia,Pa,19114,Philadelphia,34567890,67890,0
+14,NULL,Cory,Manthou,0,"444 Fourth St",Philadelphia,Pa,19147,Philadelphia,45678901,78901,0
+15,NULL,Gary,Burner,1,"555 Fifth St",Philadelphia,Pa,19121,Philadelphia,56789012,89012,0
+16,NULL,James,Ravelle,1,"656 Sixth St",Philadelphia,Pa,19147,Philadelphia,67890123,90123,0
+17,NULL,Kevin,Millhouse,1,"777 Seventh St",Philadelphia,Pa,19121,Philadelphia,78901234,00001,0
+18,NULL,Matthew,Parsons,0,"888 Eighth St",Philadelphia,Pa,19114,Philadelphia,89012345,00002,0
