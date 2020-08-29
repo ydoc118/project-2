@@ -50,4 +50,25 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/voter_validation/:dLicense/:voterReg", (req, res) => {
+    db.Voter_id.findOne({
+      where: {
+        d_license: req.params.dLicense,
+        registration_id: req.params.voterReg
+      }
+    }).then((results) => {
+      let registered = results ? true : false;
+      console.log(results)
+      let hbsObject = {};
+      if(registered && results.dataValues.first_name) {
+        hbsObject = results.dataValues;
+      }
+      hbsObject.registered = registered;
+      console.log(hbsObject);
+      // res.redirect("/index")
+      res.render("index", hbsObject)
+      
+    })
+  })
 };
