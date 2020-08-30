@@ -51,11 +51,15 @@ module.exports = function(app) {
     }
   });
 
-  app.get("/api/voter_validation/:dLicense/:voterReg", (req, res) => {
+  app.get("/api/voter_validation/:dLicense/:voterReg/:zip", (req, res) => {
     db.Voter_id.findOne({
       where: {
         d_license: req.params.dLicense,
-        registration_id: req.params.voterReg
+        registration_id: req.params.voterReg,
+        zip: req.params.zip
+        // req.params.zip
+        // req.body.zipCode
+        // '19114'
       }
     }).then((results) => {
       let registered = results ? true : false;

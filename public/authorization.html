@@ -24,14 +24,22 @@
       <h2>Authorization Form</h2>
     </div>
     <div class="row">
-      <div class="col-md-6">
+      <!-- Added this column for Postal Code -->
+      <div class="col-md-4">
+        <form class="registration">
+          <div class="form-group">
+            <label for="postalCode">Postal Code:</label>
+            <div type="text" class="form-control" id="zipCode" placeholder="User Zip Code"></div>
+          </div>
+      </div> 
+      <div class="col-md-4">
         <form class="registration">
           <div class="form-group">
             <label for="inputState">Drivers License Number:</label>
             <input type="text" class="form-control" id="dl-input" placeholder="Drivers License">
           </div>
       </div> 
-          <div class="col-md-6">
+          <div class="col-md-4">
             <form class="resgistration">
               <div class="form-group">
                 <label for="inputState">Voter Registraion Number:</label>
