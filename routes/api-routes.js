@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
@@ -61,18 +62,17 @@ module.exports = function(app) {
         // req.body.zipCode
         // '19114'
       }
-    }).then((results) => {
-      let registered = results ? true : false;
-      console.log(results)
+    }).then(results => {
+      const registered = results ? true : false;
+      console.log(results);
       let hbsObject = {};
-      if(registered && results.dataValues.first_name) {
+      if (registered && results.dataValues.first_name) {
         hbsObject = results.dataValues;
       }
       hbsObject.registered = registered;
       console.log(hbsObject);
       // res.redirect("/index")
-      res.render("index", hbsObject)
-      
-    })
-  })
+      res.render("index", hbsObject);
+    });
+  });
 };
