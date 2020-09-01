@@ -54,23 +54,27 @@ $(document).ready(() => {
     let voterReg;
     // let postalCode;
     $.get("/api/user_data").then(data => {
-      // let email = data.email;
-      console.log(data);
+      const email = data.email;
+      console.log("old" + email);
 
       $("#register").on("click", event => {
         event.preventDefault();
-        // console.log(email);
+        console.log("new" + email);
         dLicense = $("#dl-input")
           .val()
           .trim();
         voterReg = $("#reg-input")
           .val()
           .trim();
-        // postalCode = $("#zipCode").text().trim();
 
-        // console.log("Postal Code " + postalCode);
-        // console.log("License " + dLicense)
-        // console.log("Voter Reg " + voterReg)
+        $.ajax({
+          method: "PUT",
+          url: "/api/update_email_voterids/" + voterReg + "/" + email
+          // data: {"voterReg": voterReg}
+        }).then(results => {
+          console.log(results);
+        });
+
         window.location.replace(
           "/api/voter_validation/" + dLicense + "/" + voterReg + "/" + zipCode
         );
