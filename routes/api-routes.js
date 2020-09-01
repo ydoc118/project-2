@@ -75,4 +75,22 @@ module.exports = function(app) {
       res.render("index", hbsObject);
     });
   });
+
+  app.put("/api/update_email_voterids/:voterReg/:email", (req, res) => {
+    console.log(req.body);
+    db.Voter_id.update(
+      {
+        registered: 1,
+        user_id: req.params.email
+      },
+      {
+        where: {
+          registration_id: req.params.voterReg
+        }
+      }
+    ).then(results => {
+      res.json(results);
+      console.log(results);
+    });
+  });
 };
