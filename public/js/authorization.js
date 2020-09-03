@@ -25,12 +25,7 @@ $(document).ready(() => {
   getPosition();
 
   function getZip(latitude, longitude) {
-    const queryURL =
-      "http://www.mapquestapi.com/geocoding/v1/reverse?key=GL9KfMUnj94IQ3OLDQBv7GBGfKh6fV6q&location=" +
-      latitude +
-      "," +
-      longitude +
-      "&includeRoadMetadata=true&includeNearestIntersection=true";
+    const queryURL = `/api/mapQuest/${latitude}/${longitude}`;
     $.ajax({
       url: queryURL,
       method: "GET"

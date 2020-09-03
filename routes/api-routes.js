@@ -110,7 +110,6 @@ module.exports = function(app) {
   });
 
   app.get("/getAPIResponse/:street/:city/:state/:zip", (req, res) => {
-    const apiBallotKey = "AIzaSyDEUd0JEmtWQxPN_qDgJ8MndQ5koW3HXho";
     // eventually this will be replaced with a get call to https://www.googleapis.com/civicinfo/v2/elections?key=${apiBallotKey} and will get the appropriate ballots based on the ballot call from the address of the voter
     const ballotId = "2000";
     const street = req.params.street;
@@ -119,7 +118,7 @@ module.exports = function(app) {
     const zip = req.params.zip;
     apiHelper
       .makeApiCall(
-        `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${apiBallotKey}&address=${street}%20${city}%20${state}%20${zip}&electionId=${ballotId}`
+        `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${process.env.BALLOT_API_KEY}&address=${street}%20${city}%20${state}%20${zip}&electionId=${ballotId}`
       )
       .then(response => {
         let ballotObject = {};
@@ -133,4 +132,17 @@ module.exports = function(app) {
         res.send(error);
       });
   });
+
+  app.get("/api/mapQuest/:latitude/:longitude", (req, res) => {
+    const queryURL =
+      `http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.MAPQUEST_API_KEY}&location=
+      ${req.params.latitude},
+      ${req.params.longitude}
+      &includeRoadMetadata=true&includeNearestIntersection=true`;
+    apiHelper.makeApiCall(queryURL).then(response => {
+      res.json(response);
+    }).catch(error => {
+      res.send(error);
+    })
+  })
 };
