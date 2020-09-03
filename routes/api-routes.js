@@ -134,15 +134,17 @@ module.exports = function(app) {
   });
 
   app.get("/api/mapQuest/:latitude/:longitude", (req, res) => {
-    const queryURL =
-      `http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.MAPQUEST_API_KEY}&location=
+    const queryURL = `http://www.mapquestapi.com/geocoding/v1/reverse?key=${process.env.MAPQUEST_API_KEY}&location=
       ${req.params.latitude},
       ${req.params.longitude}
       &includeRoadMetadata=true&includeNearestIntersection=true`;
-    apiHelper.makeApiCall(queryURL).then(response => {
-      res.json(response);
-    }).catch(error => {
-      res.send(error);
-    })
-  })
+    apiHelper
+      .makeApiCall(queryURL)
+      .then(response => {
+        res.json(response);
+      })
+      .catch(error => {
+        res.send(error);
+      });
+  });
 };
