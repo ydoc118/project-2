@@ -18,6 +18,7 @@ app.use(
   session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
 );
 
+// hello world
 const exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
