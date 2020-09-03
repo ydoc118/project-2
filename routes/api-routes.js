@@ -2,6 +2,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const apiHelper = require("./api-helper");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -64,20 +65,20 @@ module.exports = function(app) {
       }
     }).then(results => {
       const registered = results ? true : false;
-      console.log(results);
+      //console.log(results);
       let hbsObject = {};
       if (registered && results.dataValues.first_name) {
         hbsObject = results.dataValues;
       }
       hbsObject.registered = registered;
-      console.log(hbsObject);
+      //console.log(hbsObject);
       // res.redirect("/index")
       res.render("index", hbsObject);
     });
   });
 
   app.put("/api/update_email_voterids/:voterReg/:email", (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     db.Voter_id.update(
       {
         registered: 1,
@@ -90,7 +91,46 @@ module.exports = function(app) {
       }
     ).then(results => {
       res.json(results);
-      console.log(results);
+      //console.log(results);
     });
+  });
+
+  app.get("/api/voter_address/:id", (req, res) => {
+    console.log("req.params.id: " + req.params.id);
+    db.Voter_id.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(results => {
+      //console.log(results);
+      //const voterAddress = results.dataValues;
+      //console.log(voterAddress);
+      res.json(results.dataValues);
+    });
+  });
+
+  app.get("/getAPIResponse/:street/:city/:state/:zip", (req, res) => {
+    const apiBallotKey = "AIzaSyDEUd0JEmtWQxPN_qDgJ8MndQ5koW3HXho";
+    // eventually this will be replaced with a get call to https://www.googleapis.com/civicinfo/v2/elections?key=${apiBallotKey} and will get the appropriate ballots based on the ballot call from the address of the voter
+    const ballotId = "2000";
+    const street = req.params.street;
+    const city = req.params.city;
+    const state = req.params.state;
+    const zip = req.params.zip;
+    apiHelper
+      .makeApiCall(
+        `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${apiBallotKey}&address=${street}%20${city}%20${state}%20${zip}&electionId=${ballotId}`
+      )
+      .then(response => {
+        let ballotObject = {};
+        //ballotObject = response.contests;
+        ballotObject = response;
+        console.log(response.contests);
+        res.render("ballot", ballotObject);
+        //res.json(ballotObject);
+      })
+      .catch(error => {
+        res.send(error);
+      });
   });
 };

@@ -5,7 +5,7 @@ $(document).ready(() => {
   function getPosition() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-      console.log(showPosition);
+      //console.log(showPosition);
     }
     function showPosition(position) {
       console.log(
@@ -38,9 +38,9 @@ $(document).ready(() => {
       // console.log(response)
       /* eslint-disable-next-line */
       const zipCode = response.results[0].locations[0].postalCode.substring(0, 5);
-      console.log(response);
-      console.log(zipCode.substring(0, 5));
-      console.log("New Zip:" + " " + zipCode);
+      // console.log(response);
+      // console.log(zipCode.substring(0, 5));
+      // console.log("New Zip:" + " " + zipCode);
       $("#zipCode")
         .empty()
         .append(zipCode);
