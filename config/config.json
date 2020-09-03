@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "yourRootPassword",
+    "password": "yourRootPassword#1!",
     "database": "voters_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

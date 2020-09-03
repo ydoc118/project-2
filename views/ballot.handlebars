@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
+		<title>Voter Portal</title>
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="/js/ballot.js"></script>
+        
+	</head>
+	<body>
+
+    <h1>Ballot</h1>
+   
+    {{#each contests}}
+     <h4>{{ type }}</h4>
+     <h4>{{ office }}</h4>
+        {{#each candidates}}
+            <button data-id="{{this.name}}">{{name}}</button>
+        {{/each}}
+
+    {{/each}}
+
+</body>
+</html>

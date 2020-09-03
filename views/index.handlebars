@@ -1,11 +1,25 @@
 {{!-- You can't vote
 click here to vote
 you've already voted --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
+		<title>Voter Portal</title>
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="/js/index.js"></script>
+	</head>
+	<body>
 
-<h1>Voter Portal</h1>
+    <h1>Voter Portal</h1>
 
-{{#if registered}}
-    <h1>Welcome to the Voter Portal {{first_name}}!</h1>
-    {{else}}
-        <h1>need to be registered to vote</h1>
-{{/if}}
+    {{#if registered}}
+        <h1>Welcome to the Voter Portal {{first_name}}!</h1>
+        <button class="ballot" data-id="{{this.id}}">Click here to vote!</button>
+        {{else}}
+            <h1>You didn't qualify to vote online</h1>
+    {{/if}}	
+
+</body>
+</html>
