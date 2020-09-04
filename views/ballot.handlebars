@@ -11,15 +11,16 @@
 	<body>
 
     <h1>Ballot</h1>
-   
-    {{#each contests}}
-     <h4>{{ type }}</h4>
-     <h4>{{ office }}</h4>
-        {{#each candidates}}
-            <button data-id="{{this.name}}">{{name}}</button>
+   <form action="/action_page.php">
+        {{#each contests}}
+        <h4 class= "type">{{ type }}</h4>
+        <h4>{{ office }}</h4>
+            {{#each candidates}}
+                <input type="radio" data-id="{{this.name}}" name="{{../office}}" value="{{name}}">
+                <label for="{{../office}}">{{name}}</label><br>
+            {{/each}}
+        
         {{/each}}
-
-    {{/each}}
-
+    </form>
 </body>
 </html>

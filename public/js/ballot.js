@@ -1,3 +1,7 @@
 $(document).ready(() => {
-  console.log("ballot.js");
+  if ($(".type").val() === "Referendum"){
+    console.log("hello world");
+    document.getElementsByClassName("type").className = "referendumText"
+  }
+
 });
