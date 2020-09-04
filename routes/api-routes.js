@@ -124,7 +124,17 @@ module.exports = function(app) {
         let ballotObject = {};
         //ballotObject = response.contests;
         ballotObject = response;
-        console.log(response.contests);
+        //console.log(response.contests);
+        const newContests = response.contests.map(contest => {
+          if (contest.type === "Referendum") {
+            contest.referendum = true;
+          } else {
+            contest.referendum = false;
+          }
+          return contest;
+        });
+        ballotObject.contests = newContests;
+        console.log(ballotObject.contests);
         res.render("ballot", ballotObject);
         //res.json(ballotObject);
       })

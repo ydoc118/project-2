@@ -5,7 +5,10 @@
   <title>Passport Authentication</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" /> -->
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
@@ -28,21 +31,21 @@
       <div class="col-md-4">
         <form class="registration">
           <div class="form-group">
-            <label for="postalCode">Postal Code:</label>
+            <label for="postalCode">Postal Code:  <a class="modal-trigger" id="zipModalLink" href="#zipModal"><i class="fas fa-question-circle"></i></a></label>
             <div type="text" class="form-control" id="zipCode" placeholder="User Zip Code"></div>
           </div>
       </div> 
       <div class="col-md-4">
         <form class="registration">
           <div class="form-group">
-            <label for="inputState">Drivers License Number:</label>
+            <label for="inputState">Drivers License Number:  <a class="modal-trigger" id="dlModalLink" href="#dlModal"><i class="fas fa-question-circle"></i></a></label>
             <input type="text" class="form-control" id="dl-input" placeholder="Drivers License">
           </div>
       </div> 
           <div class="col-md-4">
             <form class="resgistration">
               <div class="form-group">
-                <label for="inputState">Voter Registraion Number:</label>
+                <label for="inputState">Voter Registraion Number:  <a class="modal-trigger" id="regModalLink" href="#regModal"><i class="fas fa-question-circle"></i></a></label>
                 <input type="text" class="form-control" id="reg-input" placeholder="Voter Registration">
               </div>
           </div>
@@ -52,7 +55,43 @@
     </div>
   </div>
 
+  <div id="zipModal" class="modal">
+    <div class="modal-content">
+      <h3>Postal Code Help</h3>
+      <p>The Postal Code is pulled and populated based on your current location. As part of using the voting app, it's required that you vote from home. Your Postal Code of your current location must match the Postal Code on record at the DMV.</p><br>
+      <p>Unfortunately, there are some cases where your VPN or Internet provider may return a different Postal Code that does not reflect your current location. Since the use of this application requires your current location Postal Code to match that of your current address from the DMV, you will not because to use this app to vote. Please vote via mail-in ballot or in person at your local polling station.</p><br>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn btn-primary">Close</a>
+    </div>
+  </div>
+
+  <div id="dlModal" class="modal">
+    <div class="modal-content">
+      <h3>Driver's License Help</h3>
+      <p>Please provide a valid license number whether it be a driver's or non-driver's license. Your license number must be current and must match that at the DMV.</p><br>
+      <p>If you do not have a valid state issued license then unfortunately, you will not be able to vote through this app for this election. Please vote via mail-in ballot or in person at your local polling station.</p><br>
+      <p>If you attempt to register and your information cannot be validated, please contact your local DMV.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn btn-primary">Close</a>
+    </div>
+  </div>
+
+  <div id="regModal" class="modal">
+    <div class="modal-content">
+      <h3>Voter Registration ID Help</h3>
+      <p>Your voter registration ID is unique to you and is located on your voter registration card. When you register to vote, or change your contact information, you will receive a new voter registration card in the mail</p>
+      <p>If may take several weeks to receive your new card in the mail. If there is a problem, your state's election office will let you know. If you don't receive your new card in a suitable amount of time or if your card has been lost, damaged or stolen, you'll need to contact your state or local election ofice.</p>
+      <p>If you do not have your voter registration id by the deadline, unfortunately you will not be able to vote through this app for the election. Please vote via mail-in ballot or in person at your local polling station.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close btn btn-primary">Close</a>
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script type="text/javascript" src="js/authorization.js"></script>
 
 </body>
