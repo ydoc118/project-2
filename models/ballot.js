@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     completed_ballot: {
-      type: DataTypes.BLOB,
+      type: DataTypes.STRING,
       allowNull: false
     }
   });

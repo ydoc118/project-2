@@ -9,7 +9,7 @@ $(document).ready(() => {
       const street = results.address_one.replace(/\s/g, "%20");
       const city = results.city.replace(/\s/g, "%20");
       const state = results.state;
-      const zip = results.zip.substring(0, 5);
+      const zip = results.zip;
       window.location.replace(
         `/getAPIResponse/${street}/${city}/${state}/${zip}`
       );
