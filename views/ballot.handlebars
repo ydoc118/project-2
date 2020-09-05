@@ -10,20 +10,28 @@
 	</head>
 	<body>
 
-    <h1>Ballot</h1>
-   <form action="/action_page.php">
+   <h1>Ballot</h1>
+   <h4 class= "type">{{ type }}</h4>
+   {{!-- Added a new H4 called "normalized Input.line1" sourced from the API routes (line 138).  Using as a User ID alternative since we did not source ID to ballot.handlebars" --}}
+   <h4 class= "type" hidden id = "address">{{ normalizedInput.line1 }}</h4>
+
+   {{!-- Commented this out because page was reloading after submit button --}}
+   {{!-- action="/action_page.php --}}
+   <form>
+   <h4 class= "type">{{ type }}</h4>
         {{#each contests}}
-        {{#unless referendum}}
-        {{!-- <h4>{{ type }}</h4> --}}
-        
-        <h4>{{ office }}</h4>
+        <h4 class= "type"></h4>
+        <h4 class= "office">{{ office }}</h4>
             {{#each candidates}}
-                <input type="radio" data-id="{{this.name}}" name="{{../office}}" value="{{name}}">
+                <input class="radio" type="radio" data-id="{{this.name}}" name="radio {{../office}}" value="{{name}}">
                 <label for="{{../office}}">{{name}}</label><br>
             {{/each}}
-        {{/unless}}
+        
         {{/each}}
+        <br>
         
     </form>
+    {{!-- Put outside of the form to stop page reload --}}
+    <button class="submit" id="submit" data-id="submit" > Submit Election</button>
 </body>
 </html>

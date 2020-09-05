@@ -124,7 +124,7 @@ module.exports = function(app) {
         let ballotObject = {};
         //ballotObject = response.contests;
         ballotObject = response;
-        //console.log(response.contests);
+        // console.log(response);
         const newContests = response.contests.map(contest => {
           if (contest.type === "Referendum") {
             contest.referendum = true;
@@ -157,4 +157,38 @@ module.exports = function(app) {
         res.send(error);
       });
   });
+
+  // API PUT route to databasechanging voting status from false to true
+  app.put("/api/update_user_voted/:address", (req, res) => {
+
+    db.Voter_id.update(
+      {
+        voted: 1,
+      },
+      {
+        where: {
+          address_one: req.params.address
+        }
+      }
+    ).then(results => {
+      res.json(results);
+    });
+  });
+
+  // API POST route creating a new row in Voter_response table that adds voting selections
+  app.post("/api/ballot_results/:address/:results", (req, res) => {
+    //console.log(req.body);
+    db.Voter_response.create({
+        // user_id: req.params.address,
+        user_id: req.params.address,
+        completed_ballot: req.params.results
+      })
+    .then(results => {
+      res.json(results);
+      // Link/ redirect to the HMTL API "voting compplete"
+    });
+  });
+
+
+
 };
