@@ -12,7 +12,7 @@ module.exports = function(app) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
-      id: req.user.id
+      id: req.user.id,
     });
   });
 
@@ -22,12 +22,12 @@ module.exports = function(app) {
   app.post("/api/signup", (req, res) => {
     db.User.create({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     })
       .then(() => {
         res.redirect(307, "/api/login");
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(401).json(err);
       });
   });
@@ -48,7 +48,7 @@ module.exports = function(app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
+        id: req.user.id,
       });
     }
   });
@@ -58,12 +58,12 @@ module.exports = function(app) {
       where: {
         d_license: req.params.dLicense,
         registration_id: req.params.voterReg,
-        zip: req.params.zip
+        zip: req.params.zip,
         // req.params.zip
         // req.body.zipCode
         // '19114'
-      }
-    }).then(results => {
+      },
+    }).then((results) => {
       const registered = results ? true : false;
       //console.log(results);
       let hbsObject = {};
@@ -82,14 +82,14 @@ module.exports = function(app) {
     db.Voter_id.update(
       {
         registered: 1,
-        user_id: req.params.email
+        user_id: req.params.email,
       },
       {
         where: {
-          registration_id: req.params.voterReg
-        }
+          registration_id: req.params.voterReg,
+        },
       }
-    ).then(results => {
+    ).then((results) => {
       res.json(results);
       //console.log(results);
     });
@@ -99,9 +99,9 @@ module.exports = function(app) {
     console.log("req.params.id: " + req.params.id);
     db.Voter_id.findOne({
       where: {
-        id: req.params.id
-      }
-    }).then(results => {
+        id: req.params.id,
+      },
+    }).then((results) => {
       //console.log(results);
       //const voterAddress = results.dataValues;
       //console.log(voterAddress);
@@ -120,12 +120,12 @@ module.exports = function(app) {
       .makeApiCall(
         `https://www.googleapis.com/civicinfo/v2/voterinfo?key=${process.env.BALLOT_API_KEY}&address=${street}%20${city}%20${state}%20${zip}&electionId=${ballotId}`
       )
-      .then(response => {
+      .then((response) => {
         let ballotObject = {};
         //ballotObject = response.contests;
         ballotObject = response;
         // console.log(response);
-        const newContests = response.contests.map(contest => {
+        const newContests = response.contests.map((contest) => {
           if (contest.type === "Referendum") {
             contest.referendum = true;
           } else {
@@ -138,7 +138,7 @@ module.exports = function(app) {
         res.render("ballot", ballotObject);
         //res.json(ballotObject);
       })
-      .catch(error => {
+      .catch((error) => {
         res.send(error);
       });
   });
@@ -150,45 +150,48 @@ module.exports = function(app) {
       &includeRoadMetadata=true&includeNearestIntersection=true`;
     apiHelper
       .makeApiCall(queryURL)
-      .then(response => {
+      .then((response) => {
         res.json(response);
       })
-      .catch(error => {
+      .catch((error) => {
         res.send(error);
       });
   });
 
   // API PUT route to databasechanging voting status from false to true
   app.put("/api/update_user_voted/:address", (req, res) => {
-
     db.Voter_id.update(
       {
         voted: 1,
       },
       {
         where: {
-          address_one: req.params.address
-        }
+          address_one: req.params.address,
+        },
       }
-    ).then(results => {
-      res.json(results);
-    });
+    )
+      .then((results) => {
+        res.status(200).json(results);
+      })
+      .catch((e) => {
+        res.error("OH NO UPDATE_VOTED", e);
+      });
   });
 
   // API POST route creating a new row in Voter_response table that adds voting selections
   app.post("/api/ballot_results/:address/:results", (req, res) => {
     //console.log(req.body);
     db.Voter_response.create({
-        // user_id: req.params.address,
-        user_id: req.params.address,
-        completed_ballot: req.params.results
+      // user_id: req.params.address,
+      user_id: req.params.address,
+      completed_ballot: decodeURIComponent(req.params.results),
+    })
+      .then((results) => {
+        res.status(200).json(results);
+        // Link/ redirect to the HMTL API "voting compplete"
       })
-    .then(results => {
-      res.json(results);
-      // Link/ redirect to the HMTL API "voting compplete"
-    });
+      .catch((e) => {
+        res.error("OH NO BALLOT_RESULTS", e);
+      });
   });
-
-
-
 };

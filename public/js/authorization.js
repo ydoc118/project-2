@@ -1,7 +1,7 @@
 $(document).ready(() => {
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
-  $(".modal").modal();
+  //$(".modal").modal();
   function getPosition() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
