@@ -3,60 +3,60 @@ module.exports = function(sequelize, DataTypes) {
   const Voter_id = sequelize.define("Voter_id", {
     user_id: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     registered: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false,
+      defaultValue: false
     },
     address_one: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     address_two: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: null,
+      defaultValue: null
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     zip: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     county: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     d_license: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     registration_id: {
       type: DataTypes.STRING,
       allowNull: true,
-      defaultValue: null,
+      defaultValue: null
     },
     voted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false,
-    },
+      defaultValue: false
+    }
   });
   return Voter_id;
 };
