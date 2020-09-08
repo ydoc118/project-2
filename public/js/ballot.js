@@ -4,7 +4,7 @@ $(document).ready(() => {
 
     // Targeting each radio selection value and pushing to an array called selection
     const selection = [];
-    $.each($("input[class='radio']:checked"), function() {
+    $.each($("input[class='radio2']:checked"), function() {
       selection.push($(this).val());
     });
 
