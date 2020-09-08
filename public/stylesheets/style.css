@@ -20,12 +20,13 @@ form.login {
   right: 0;
   background-color: #fafafa;
   padding: 0;
-  max-height: 45%;
+  max-height: 30%;
   width: 55%;
   margin: auto;
   overflow-y: auto;
   border-radius: 2px;
   will-change: top, opacity;
+  font-size: 20px;
 }
 
 .modal:focus {
@@ -106,9 +107,9 @@ form.login {
   will-change: bottom, opacity;
 }
 
-*{
+/* *{
   font-family: 'Anton', sans-serif;
-}
+} */
 
 h2 {
 font-size: 60px;
@@ -116,11 +117,15 @@ color: red;
 }
  
 body {
-  background-image: url('https://lh3.googleusercontent.com/proxy/xf7rBV9ES_a27QDM2PNejaJe41cncumBvmvq6SSSPuHwsCNQ54HDqlhT-fzfQ1lBP1ArH84mngaV-Gx9UbPrQjpUw2W5tATzpS1EIBzWCjZhyvFAt--7XDFgriLHzJVkJ_YWfxhbKkrFWSokYMtzuhs');
-  background-repeat: no-repeat;
+  background-image: url('https://images-na.ssl-images-amazon.com/images/I/71k7f5fs1LL._SY355_.jpg');
+  /* background-repeat: no-repeat; */
   background-attachment: fixed;
-  background-size: 1000px;
+  background-size: cover;
   background-position: center;
+}
+
+.container{
+  background-color: white;
 }
 
 label{
@@ -129,4 +134,13 @@ label{
 
 p{
   color: black;
+}
+
+.office{
+  text-decoration: underline;
+}
+
+.ballotName{
+  color: grey;
+  text-indent: 5px;
 }

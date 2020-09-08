@@ -19,9 +19,11 @@ you've already voted --}}
         {{#unless voted}}
             <h1>Welcome to the Voter Portal {{first_name}}!</h1>
             <button class="ballot" data-id="{{this.id}}">Click here to vote!</button>
+            <br>
+            <br>
             {{else}}
                 {{#if voted}}
-                    <h1>Thank you for your vote!</h1>
+                    <h1>Thank you for voting!</h1>
                 {{/if}}
         {{/unless}}
         {{else}}
