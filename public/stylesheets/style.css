@@ -105,3 +105,28 @@ form.login {
   border-radius: 0;
   will-change: bottom, opacity;
 }
+
+*{
+  font-family: 'Anton', sans-serif;
+}
+
+h2 {
+font-size: 60px;
+color: red;
+}
+ 
+body {
+  background-image: url('https://lh3.googleusercontent.com/proxy/xf7rBV9ES_a27QDM2PNejaJe41cncumBvmvq6SSSPuHwsCNQ54HDqlhT-fzfQ1lBP1ArH84mngaV-Gx9UbPrQjpUw2W5tATzpS1EIBzWCjZhyvFAt--7XDFgriLHzJVkJ_YWfxhbKkrFWSokYMtzuhs');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 1000px;
+  background-position: center;
+}
+
+label{
+  color: black;
+}
+
+p{
+  color: black;
+}

@@ -6,13 +6,14 @@ you've already voted --}}
 <head>
 	<meta charset="UTF-8">
 		<link rel="stylesheet" href="/stylesheets/style.css" type="text/css" />
+        <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 		<title>Voter Portal</title>
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="/js/index.js"></script>
 	</head>
 	<body>
 
-    <h1>Voter Portal</h1>
+    {{!-- <h1>Voter Portal</h1> --}}
 
     {{#if registered}}
         <h1>Welcome to the Voter Portal {{first_name}}!</h1>
