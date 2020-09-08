@@ -1,9 +1,9 @@
-$(document).ready(function() {
-  $("button").click(function() {
+$(document).ready(() => {
+  $("button").click(() => {
     event.preventDefault();
 
     // Targeting each radio selection value and pushing to an array called selection
-    var selection = [];
+    const selection = [];
     $.each($("input[class='radio']:checked"), function() {
       selection.push($(this).val());
     });
@@ -15,23 +15,23 @@ $(document).ready(function() {
     console.log(results);
 
     // Create a variable called address that is targetting hidden address on ballot handlebars
-    let address = $("#address").text();
+    const address = $("#address").text();
     console.log(address);
 
     // PUT route to update database, changing voting status from false to true
     $.ajax({
       method: "PUT",
       url: "/api/update_user_voted/" + address,
-      data: { address: address },
-    }).then((results) => {
+      data: { address: address }
+    }).then(results => {
       console.log(results);
     });
 
     // POST route creating a new row in Voter_response table that adds voting selections
     $.ajax({
       method: "POST",
-      url: "/api/ballot_results/" + address + "/" + encodeURIComponent(results),
-    }).then((results) => {
+      url: "/api/ballot_results/" + address + "/" + encodeURIComponent(results)
+    }).then(results => {
       console.log(results);
       window.location.replace("/voted");
     });

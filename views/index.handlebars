@@ -16,8 +16,14 @@ you've already voted --}}
     {{!-- <h1>Voter Portal</h1> --}}
 
     {{#if registered}}
-        <h1>Welcome to the Voter Portal {{first_name}}!</h1>
-        <button class="ballot" data-id="{{this.id}}">Click here to vote!</button>
+        {{#unless voted}}
+            <h1>Welcome to the Voter Portal {{first_name}}!</h1>
+            <button class="ballot" data-id="{{this.id}}">Click here to vote!</button>
+            {{else}}
+                {{#if voted}}
+                    <h1>Thank you for your vote!</h1>
+                {{/if}}
+        {{/unless}}
         {{else}}
             <h1>You didn't qualify to vote online</h1>
     {{/if}}	
